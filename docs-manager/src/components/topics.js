@@ -16,8 +16,8 @@ export const Topics = () => {
         px={{ base: 30, md: 20 }}
         py={{ base: 30, md: 20 }}
       >
-        <TopicCard topics={topics} />
-        <AddNewTopic />
+        <TopicCard topics={topics} setTopic={setTopic} />
+        <AddNewTopic setTopic={setTopic} />
       </SimpleGrid>
     </>
   );

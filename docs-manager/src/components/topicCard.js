@@ -19,9 +19,13 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Spacer,
+  HStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { BsJournalPlus } from "react-icons/bs";
+import { RiDeleteBinLine } from "react-icons/ri";
+import uuid from "react-uuid";
 
 const spin = keyframes`
   0%, 100% { transform: rotate(0deg); }
@@ -40,6 +44,12 @@ export const TopicCard = (props) => {
 
   const animation = `${spin} 1s ease-in-out`;
 
+  const deleteTopic = (currentTopic) => {
+    props.setTopic(() => {
+      return props.topics.filter((topic) => currentTopic.id !== topic.id);
+    });
+    console.log("delete", currentTopic);
+  };
   return (
     <>
       {props.topics.map((topic) => {
@@ -52,13 +62,26 @@ export const TopicCard = (props) => {
             key={topic.id}
           >
             <CardHeader>
-              <Heading size="md"> {topic.title}</Heading>
+              <HStack>
+                <Heading size="md"> {topic.title}</Heading>
+                <Spacer />
+                <Button
+                  colorScheme="red"
+                  size={"sm"}
+                  onClick={() => {
+                    deleteTopic(topic);
+                  }}
+                >
+                  <RiDeleteBinLine />
+                </Button>
+              </HStack>
             </CardHeader>
+
             <CardBody>
               <Text>{topic.description}</Text>
             </CardBody>
             <CardFooter>
-              <Button>{topic.link}</Button>
+              <Button>View More</Button>
             </CardFooter>
           </Card>
         );
@@ -67,11 +90,29 @@ export const TopicCard = (props) => {
   );
 };
 
-export const AddNewTopic = () => {
+export const AddNewTopic = (props) => {
   //   const animation = `${zoom} infinite 1s `;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
+
+  const titleref = React.useRef();
+  const descriptionref = React.useRef();
+
+  //   console.log(props);
+  let inputTopic = {};
+  const saveNewTopic = () => {
+    // console.log(titleref.current.value, descriptionref.current.value);
+
+    //setting values from input fields and adding new topic to the list
+    inputTopic.id = uuid();
+    inputTopic.title = titleref.current.value;
+    inputTopic.description = descriptionref.current.value;
+
+    props.setTopic((prev) => {
+      return [...prev, inputTopic];
+    });
+    // console.log(topic);
+    onClose();
+  };
 
   return (
     <>
@@ -95,12 +136,7 @@ export const AddNewTopic = () => {
         </Card>
       </center>
 
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Add new Topic</ModalHeader>
@@ -108,17 +144,17 @@ export const AddNewTopic = () => {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Title</FormLabel>
-              <Input ref={initialRef} placeholder="Title" />
+              <Input ref={titleref} placeholder="Title" />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Description</FormLabel>
-              <Input placeholder="Description" />
+              <Input ref={descriptionref} placeholder="Description" />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
+            <Button colorScheme="blue" mr={3} onClick={saveNewTopic}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
