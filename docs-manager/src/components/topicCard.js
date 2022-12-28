@@ -24,8 +24,9 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { BsJournalPlus } from "react-icons/bs";
-import { RiDeleteBinLine } from "react-icons/ri";
+// import { RiDeleteBinLine } from "react-icons/ri";
 import uuid from "react-uuid";
+import { DeleteButton } from "./deleteButton";
 
 const spin = keyframes`
   0%, 100% { transform: rotate(0deg); }
@@ -44,12 +45,6 @@ export const TopicCard = (props) => {
 
   const animation = `${spin} 1s ease-in-out`;
 
-  const deleteTopic = (currentTopic) => {
-    props.setTopic(() => {
-      return props.topics.filter((topic) => currentTopic.id !== topic.id);
-    });
-    console.log("delete", currentTopic);
-  };
   return (
     <>
       {props.topics.map((topic) => {
@@ -60,20 +55,13 @@ export const TopicCard = (props) => {
             boxShadow="0px 0px 4px 1px rgba(57,255,20,.6)"
             _hover={{ animation: animation }}
             key={topic.id}
+            color={"white"}
           >
             <CardHeader>
               <HStack>
                 <Heading size="md"> {topic.title}</Heading>
                 <Spacer />
-                <Button
-                  colorScheme="red"
-                  size={"sm"}
-                  onClick={() => {
-                    deleteTopic(topic);
-                  }}
-                >
-                  <RiDeleteBinLine />
-                </Button>
+                <DeleteButton topic={topic} />
               </HStack>
             </CardHeader>
 
@@ -81,7 +69,7 @@ export const TopicCard = (props) => {
               <Text>{topic.description}</Text>
             </CardBody>
             <CardFooter>
-              <Button>View More</Button>
+              <Button bgColor={"gray.700"}>View More</Button>
             </CardFooter>
           </Card>
         );
