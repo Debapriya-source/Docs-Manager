@@ -22,6 +22,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 export const Navbar = () => {
   //   const listAnimate = `${animation} 1s ease-in-out infinite`;
+  // console.log("Navbar");
   return (
     <>
       <Flex

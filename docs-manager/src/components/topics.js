@@ -5,7 +5,10 @@ import { dummyTopics } from "../data/topics";
 
 // console.log(dummyTopics);
 export const TopicContext = createContext();
+
 export const Topics = () => {
+  // console.log("Topics");
+
   const [topics, setTopic] = useState(dummyTopics);
   const values = { topics, setTopic };
   // console.log(topics);

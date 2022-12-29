@@ -11,7 +11,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { TopicContext } from "./topics";
+
 export const DeleteButton = (props) => {
+  // console.log("DeleteButton");
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
 
@@ -21,7 +24,7 @@ export const DeleteButton = (props) => {
     setTopic(() => {
       return topics.filter((topic) => currentTopic.id !== topic.id);
     });
-    // console.log("delete", currentTopic);
+    // console.log("delete");
   };
   return (
     <>

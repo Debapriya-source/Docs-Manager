@@ -42,6 +42,7 @@ const spin = keyframes`
 
 export const TopicCard = (props) => {
   //   console.log(props.topics);
+  // console.log("TopicCard");
 
   const animation = `${spin} 1s ease-in-out`;
 
@@ -79,6 +80,7 @@ export const TopicCard = (props) => {
 };
 
 export const AddNewTopic = (props) => {
+  // console.log("AddNewTopic");
   //   const animation = `${zoom} infinite 1s `;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -95,11 +97,15 @@ export const AddNewTopic = (props) => {
     inputTopic.title = titleref.current.value;
     inputTopic.description = descriptionref.current.value;
 
-    props.setTopic((prev) => {
-      return [...prev, inputTopic];
-    });
-    // console.log(topic);
-    onClose();
+    if (inputTopic.title !== "") {
+      props.setTopic((prev) => {
+        return [...prev, inputTopic];
+      });
+      // console.log(topic);
+      onClose();
+    } else {
+      alert("Title cannot be empty");
+    }
   };
 
   return (
