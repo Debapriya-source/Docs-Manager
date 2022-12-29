@@ -76,6 +76,7 @@ export const Navbar = () => {
                 icon={<GiHamburgerMenu />}
                 variant="solid"
                 colorScheme="teal"
+                size={"lg"}
               />
               <MenuList color={"black"}>
                 <Link to="/" ><MenuItem>
