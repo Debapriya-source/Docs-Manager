@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Text , Divider, Flex} from '@chakra-ui/react'
 export const About = () => {
   return (
-    <Flex direction="column" alignItems="center" justifyContent="center" height="90vh">
+    <Flex direction="column" alignItems="center" justifyContent="center" height="90vh" color={"white"}>
     <Box>
       <Text fontSize={"3xl"} pb={"2"}>Organize all your docs in one place.</Text>
       <Divider />
