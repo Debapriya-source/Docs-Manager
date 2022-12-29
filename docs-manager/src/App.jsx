@@ -3,6 +3,7 @@ import { Topics } from "./components/Topics";
 import { Routes, Route } from "react-router-dom";
 import { About } from "./components/About";
 import { Box } from "@chakra-ui/react";
+import { Contents } from "./components/contents/Contents";
 function App() {
   // console.log("App");
   return (
@@ -11,6 +12,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Topics />} />
       <Route path="/about" element={<About/>}/>
+      <Route path="/contents" element={<Contents />} />
+      <Route path="*" element={<h1>404 Not Found</h1>} />
     </Routes>
       {/* <Topics /> */}
     </Box>
