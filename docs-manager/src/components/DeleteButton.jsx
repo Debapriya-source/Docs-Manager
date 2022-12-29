@@ -10,7 +10,7 @@ import {
   AlertDialogFooter,
   useDisclosure,
 } from "@chakra-ui/react";
-import { TopicContext } from "./topics";
+import { TopicContext } from "./Topics";
 
 export const DeleteButton = (props) => {
   // console.log("DeleteButton");

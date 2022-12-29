@@ -1,5 +1,5 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import { TopicCard, AddNewTopic } from "./topicCard";
+import { TopicCard, AddNewTopic } from "./TopicCard";
 import { useState, createContext } from "react";
 import { dummyTopics } from "../data/topics";
 

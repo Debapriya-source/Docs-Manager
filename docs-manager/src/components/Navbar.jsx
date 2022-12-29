@@ -2,7 +2,7 @@ import {
   Box,
   Flex,
   Heading,
-  Link,
+  // Link,
   Spacer,
   HStack,
   Show,
@@ -13,12 +13,19 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
+
 // const animation = keyframes`{
 //     from {
 //         background: inherit
 //     }
 //     to  { background: lightblue }
 // }`;
+
+const navbarStyle = {
+  fontSize: "2.2em",
+}
+
 
 export const Navbar = () => {
   //   const listAnimate = `${animation} 1s ease-in-out infinite`;
@@ -46,19 +53,21 @@ export const Navbar = () => {
           🗒️ Docs Manager
         </Heading>
         <Spacer />
-        <Show above="sm">
+        <Show above="md">
           <Box>
             <HStack spacing="1em" mr="1em">
-              <Link href="#" fontSize="xl" _hover={{ color: "teal.600" }}>
+              {/* <Link href="/#" fontSize="xl" _hover={{ color: "teal.600" }}> */}
+              <Link to="/" style={navbarStyle}>
                 Home
               </Link>
-              <Link href="#" fontSize="xl" _hover={{ color: "teal.600" }}>
+              {/* <Link href="/about" fontSize="xl" _hover={{ color: "teal.600" }}> */}
+              <Link to="/about" style={navbarStyle}>
                 About
               </Link>
             </HStack>
           </Box>
         </Show>
-        <Show below="sm">
+        <Show below="md">
           <Box>
             <Menu>
               <MenuButton
@@ -69,8 +78,9 @@ export const Navbar = () => {
                 colorScheme="teal"
               />
               <MenuList color={"black"}>
-                <MenuItem>Home</MenuItem>
-                <MenuItem>About</MenuItem>
+                <Link to="/" ><MenuItem>
+                Home</MenuItem></Link>
+                <Link to="/about"><MenuItem>About</MenuItem></Link>
               </MenuList>
             </Menu>
           </Box>

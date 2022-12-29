@@ -26,7 +26,7 @@ import React from "react";
 import { BsJournalPlus } from "react-icons/bs";
 // import { RiDeleteBinLine } from "react-icons/ri";
 import uuid from "react-uuid";
-import { DeleteButton } from "./deleteButton";
+import { DeleteButton } from "./DeleteButton";
 
 const spin = keyframes`
   0%, 100% { transform: rotate(0deg); }
